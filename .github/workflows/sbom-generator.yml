@@ -13,13 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: advanced-security/sbom-generator-action@v0.0.1
-        id: sbom
-        env: 
-          GITHUB_TOKEN: ${{ github.token }}
-      - uses: actions/upload-artifact@v3.1.0
-        with: 
-          path: ${{steps.sbom.outputs.fileName }}
-          name: "SBOM"
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: SBOM Generate
+        uses: anchore/sbom-action@v0
+        with:
+          path: ./sampleproj/
+      
+      #- name: SBOM Publish with Release
+      #  uses: anchore/sbom-action/publish-sbom@v0
+      #  with:
+      #    sbom-artifact-match: ".*\\.spdx$"
