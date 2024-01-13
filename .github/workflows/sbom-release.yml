@@ -21,7 +21,7 @@ jobs:
 
     env:
       # Get the tag value from the workflow dispatch or the release event info
-      TAG_NAME: ${{ github.event.inputs.tag_name | github.event.release.tag_name }}
+      TAG_NAME: ${{ github.event.inputs.tag_name || github.event.release.tag_name }}
 
     steps:
       - name: WD ${{ github.event.inputs.release_number }}
