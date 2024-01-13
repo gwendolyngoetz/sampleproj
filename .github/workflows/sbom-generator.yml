@@ -29,7 +29,7 @@ jobs:
       #  with:
       #    path: ./sampleproj/
       
-      #- name: SBOM Publish with Release
-      #  uses: anchore/sbom-action/publish-sbom@v0
-      #  with:
-      #    sbom-artifact-match: ".*\\.spdx$"
+      - name: SBOM Publish with Release
+        uses: anchore/sbom-action/publish-sbom@v0
+        with:
+          sbom-artifact-match: ".*\\.spdx$"
