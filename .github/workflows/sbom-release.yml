@@ -24,8 +24,8 @@ jobs:
       TAG_NAME: ${{ github.event.inputs.tag_name || github.event.release.tag_name }}
 
     steps:
-      - name: WD ${{ github.event.inputs.release_number }}
-        run: echo ${{ github.event.inputs.release_number }}
+      - name: WD ${{ github.event.inputs.tag_name }}
+        run: echo ${{ github.event.inputs.tag_name }}
         
       - name: EV ${{ github.event.release.tag_name }}
         run: echo ${{ github.event.release.tag_name }}
