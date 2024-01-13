@@ -1,4 +1,4 @@
-name: SBOM Generator
+name: SBOM Generator Release
 
 on:
   release:
