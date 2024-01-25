@@ -24,8 +24,8 @@ jobs:
       - name: Build Images
         run: docker buildx build --push --file App.${{ matrix.id }}.Dockerfile --tag gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }} .
 
-      - name: Run image 1
-        run:
+      #- name: Run image 1
+      #  run:
 
   #run_images:
   #  runs-on: ubuntu-latest
