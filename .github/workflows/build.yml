@@ -31,8 +31,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Images ${{ env.tag }}
-        run: |
-          docker buildx build --cache-to ${{ env.image }} --push --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
+        run: docker buildx build --cache-from type=gha --cache-to type=gha,mode=max  --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
 
       # - name: Run Images ${{ env.tag }}
       #   run: docker run ${{ env.tag }}
