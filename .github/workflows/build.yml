@@ -38,6 +38,7 @@ jobs:
 
   run_images:
     runs-on: ubuntu-latest
+    depends-on: build_images
 
     strategy:
       matrix:
