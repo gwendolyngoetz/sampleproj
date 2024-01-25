@@ -42,9 +42,8 @@ jobs:
     strategy:
       matrix:
         id: [1]
-        label: [a]
         #id: [1, 2, 3, 4]
-        #label: [a, b, c]
+        label: [a, b, c]
 
     env:
       image: app-${{ matrix.id }}
