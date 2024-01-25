@@ -13,6 +13,7 @@ jobs:
       matrix:
         #id: [1, 2, 3, 4]
         id: [1]
+        label: [a, b, c]
 
     env:
       image: gwendolyngoetz/app-${{ matrix.id }}
@@ -32,23 +33,26 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Images ${{ env.tag }}
-        run: docker buildx build --push --cache-from=type=gha --cache-to=type=gha,mode=max --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
+        run: docker buildx build --load --cache-from=type=gha --cache-to=type=gha,mode=max --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
 
-  run_images:
-    needs: build_images
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        id: [1]
-        #id: [1, 2, 3, 4]
-        label: [a, b, c]
-
-    env:
-      image: gwendolyngoetz/app-${{ matrix.id }}
-      tag: gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
-
-    steps:
       - name: Run Images ${{ matrix.label }} ${{ env.tag }}
         run: docker run ${{ env.tag }}
+
+  #run_images:
+  #  needs: build_images
+
+  #  runs-on: ubuntu-latest
+
+  #  strategy:
+  #    matrix:
+  #      id: [1]
+  #      #id: [1, 2, 3, 4]
+  #      label: [a, b, c]
+
+  #  env:
+  #    image: gwendolyngoetz/app-${{ matrix.id }}
+  #    tag: gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
+
+  #  steps:
+  #    - name: Run Images ${{ matrix.label }} ${{ env.tag }}
+  #      run: docker run ${{ env.tag }}
