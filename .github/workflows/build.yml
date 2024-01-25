@@ -11,7 +11,8 @@ jobs:
 
     strategy:
       matrix:
-        id: [1, 2, 3, 4]
+        #id: [1, 2, 3, 4]
+        id: [1]
 
     env:
       image: app-${{ matrix.id }}
