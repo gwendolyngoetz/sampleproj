@@ -55,7 +55,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Images ${{ env.tag }}
-        run: docker buildx build --load --cache-from=type=gha --cache-to=type=gha,mode=max --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
+        run: docker buildx build --load --cache-from=type=gha --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
 
       - name: Run Images ${{ matrix.label }} ${{ env.tag }}
         run: docker run ${{ env.tag }}
