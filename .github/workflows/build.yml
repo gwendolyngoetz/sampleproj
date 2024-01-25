@@ -53,5 +53,12 @@ jobs:
       tag: ghcr.io/gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run Images ${{ matrix.label }} ${{ env.tag }}
         run: docker run ${{ env.tag }}
