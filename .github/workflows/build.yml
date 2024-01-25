@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Images
+      - name: Build Images ${{ env.tag }}
         run: docker buildx build --push --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
         #run: docker buildx build --push --file App.${{ matrix.id }}.Dockerfile --tag gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }} .
 
