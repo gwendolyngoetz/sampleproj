@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        id: [1]
+        id: [1, 2, 3, 4]
 
     env:
       image: app-${{ matrix.id }}
@@ -43,7 +43,7 @@ jobs:
 
     strategy:
       matrix:
-        id: [1]
+        id: [1, 2, 3, 4]
 
     env:
       image: app-${{ matrix.id }}
