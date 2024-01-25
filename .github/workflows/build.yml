@@ -15,8 +15,8 @@ jobs:
         id: [1]
 
     env:
-      image: app-${{ matrix.id }}
-      tag: app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
+      image: gwendolyngoetz/app-${{ matrix.id }}
+      tag: gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
       - name: Checkout
@@ -25,12 +25,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      #      - name: Docker Login
-      #        uses: docker/login-action@v3
-      #        with:
-      #          username: ${{ secrets.DOCKER_USERNAME }}
-      #          password: ${{ secrets.DOCKER_PASSWORD }}
-      #
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build Images ${{ env.tag }}
         run: docker buildx build --load --cache-from=type=gha --cache-to=type=gha,mode=max --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
 
@@ -46,18 +46,9 @@ jobs:
         label: [a, b, c]
 
     env:
-      image: app-${{ matrix.id }}
-      tag: app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
+      image: gwendolyngoetz/app-${{ matrix.id }}
+      tag: gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build Images ${{ env.tag }}
-        run: docker buildx build --load --cache-from=type=gha --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
-
       - name: Run Images ${{ matrix.label }} ${{ env.tag }}
         run: docker run ${{ env.tag }}
