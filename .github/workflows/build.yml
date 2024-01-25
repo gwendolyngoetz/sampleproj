@@ -24,17 +24,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Docker Login
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
+      #      - name: Docker Login
+      #        uses: docker/login-action@v3
+      #        with:
+      #          username: ${{ secrets.DOCKER_USERNAME }}
+      #          password: ${{ secrets.DOCKER_PASSWORD }}
+      #
       - name: Build Images ${{ env.tag }}
         run: docker buildx build --load --cache-from=type=gha --cache-to=type=gha,mode=max --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
-
-      - name: Run Images ${{ env.tag }}
-        run: docker run ${{ env.tag }}
 
   run_images:
     needs: build_images
@@ -44,7 +41,7 @@ jobs:
     strategy:
       matrix:
         id: [1, 2, 3, 4]
-        label: [a, b, c, d]
+        label: [a, b, c]
 
     env:
       image: app-${{ matrix.id }}
