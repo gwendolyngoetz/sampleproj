@@ -15,7 +15,7 @@ jobs:
 
     env:
       image: gwendolyngoetz/app-${{ matrix.id }}
-      tag: ${{ env.image }}:${{ github.run_id }}-${{ github.run_attempt }}
+      tag: ${{ image }}:${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
       - name: Checkout
