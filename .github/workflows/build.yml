@@ -9,6 +9,10 @@ jobs:
   build_images:
     runs-on: ubuntu-latest
 
+    permissions:
+      packages: write
+      contents: read
+
     strategy:
       matrix:
         #id: [1, 2, 3, 4]
