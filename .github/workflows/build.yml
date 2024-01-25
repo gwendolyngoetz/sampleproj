@@ -44,6 +44,7 @@ jobs:
     strategy:
       matrix:
         id: [1, 2, 3, 4]
+        label: [a, b, c, d]
 
     env:
       image: app-${{ matrix.id }}
@@ -59,5 +60,5 @@ jobs:
       - name: Build Images ${{ env.tag }}
         run: docker buildx build --load --cache-from=type=gha --cache-to=type=gha,mode=max --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
 
-      - name: Run Images ${{ env.tag }}
+      - name: Run Images ${{ matrix.label }} ${{ env.tag }}
         run: docker run ${{ env.tag }}
