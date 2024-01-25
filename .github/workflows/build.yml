@@ -33,8 +33,8 @@ jobs:
       - name: Build Images ${{ env.tag }}
         run: docker buildx build --cache-from type=gha --cache-to type=gha,mode=max  --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
 
-      # - name: Run Images ${{ env.tag }}
-      #   run: docker run ${{ env.tag }}
+      - name: Run Images ${{ env.tag }}
+        run: docker run ${{ env.tag }}
 
   run_images:
     needs: build_images
