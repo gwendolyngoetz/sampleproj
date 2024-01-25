@@ -37,8 +37,9 @@ jobs:
       #   run: docker run ${{ env.tag }}
 
   run_images:
-    runs-on: ubuntu-latest
     needs: build_images
+
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
