@@ -14,8 +14,8 @@ jobs:
         id: [1, 2, 3, 4]
 
     env:
-      image: gwendolyngoetz/app-${{ matrix.id }}
-      tag: gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
+      image: app-${{ matrix.id }}
+      tag: app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
       - name: Checkout
@@ -31,7 +31,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Images ${{ env.tag }}
-        run: docker buildx build --cache-to ${{ env.image }} --push --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
+        run: |
+          docker buildx build --cache-to ${{ env.image }} --push --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
 
       # - name: Run Images ${{ env.tag }}
       #   run: docker run ${{ env.tag }}
@@ -46,8 +47,8 @@ jobs:
         id: [1, 2, 3, 4]
 
     env:
-      image: gwendolyngoetz/app-${{ matrix.id }}
-      tag: gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
+      image: app-${{ matrix.id }}
+      tag: app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
       - name: Run Images ${{ env.tag }}
