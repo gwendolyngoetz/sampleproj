@@ -22,4 +22,13 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Images
-        run: docker buildx build --file App.${{ matrix.id }}.Dockerfile --tag app-${{ matrix.id }}:latest .
+        run: docker buildx build --push --file App.${{ matrix.id }}.Dockerfile --tag gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }} .
+
+      - name: Run image 1
+        run:
+
+  #run_images:
+  #  runs-on: ubuntu-latest
+
+  #  steps:
+  #    -name:
