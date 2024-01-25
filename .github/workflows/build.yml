@@ -50,5 +50,8 @@ jobs:
       tag: app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
+      - name: Build Images ${{ env.tag }}
+        run: docker buildx build --load --cache-from=type=gha --tag ${{ env.tag }}
+
       - name: Run Images ${{ env.tag }}
         run: docker run ${{ env.tag }}
