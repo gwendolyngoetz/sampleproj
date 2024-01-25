@@ -15,8 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        #id: [1, 2, 3, 4]
-        id: [1]
+        id: [1, 2, 3, 4]
 
     env:
       image: ghcr.io/gwendolyngoetz/app-${{ matrix.id }}
@@ -52,9 +51,8 @@ jobs:
 
     strategy:
       matrix:
-        id: [1]
-        #id: [1, 2, 3, 4]
-        label: [a, b, c]
+        id: [1, 2, 3, 4]
+        label: [a, b, c, d, e]
 
     env:
       image: ghcr.io/gwendolyngoetz/app-${{ matrix.id }}
