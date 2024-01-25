@@ -50,6 +50,12 @@ jobs:
       tag: app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build Images ${{ env.tag }}
         run: docker buildx build --load --cache-from=type=gha --cache-to=type=gha,mode=max --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
 
