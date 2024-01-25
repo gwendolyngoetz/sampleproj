@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      # fail-fast: false
       matrix:
         id: [1, 2, 3, 4]
 
@@ -32,7 +31,6 @@ jobs:
 
       - name: Build Images ${{ env.tag }}
         run: docker buildx build --push --file App.${{ matrix.id }}.Dockerfile --tag ${{ env.tag }} .
-        #run: docker buildx build --push --file App.${{ matrix.id }}.Dockerfile --tag gwendolyngoetz/app-${{ matrix.id }}:${{ github.run_id }}-${{ github.run_attempt }} .
 
       - name: Run Images ${{ env.tag }}
         run: docker run ${{ env.tag }}
