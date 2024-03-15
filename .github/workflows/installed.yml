@@ -1,11 +1,12 @@
 name: Installed
 
 on:
-  workflow_dispatch: {}
+  push:
+    branches: master
 
 jobs:
   run_images:
     runs-on: ubuntu-latest
     steps:
       - name: List installed
-        run: apt list --installed
+        run: exit 1
