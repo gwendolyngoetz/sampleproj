@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: List installed
-        run: apt list --installed
+        run: exit 1
