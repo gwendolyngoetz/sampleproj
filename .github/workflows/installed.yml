@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: List installed
-        run: exit 1
+        run: "echo CI: ${{ env.CI }}"
