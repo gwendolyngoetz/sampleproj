@@ -12,17 +12,11 @@ jobs:
     uses: ./.github/workflows/child.yaml
     secrets: inherit
     
-  handle_success:
-    if: success()
+  on_failure:
+    needs: [ run_parent ]
+    if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: handle success
-        run: echo "handle success"
-       
-  handle_error:
-    if: failure()
-    runs-on: ubuntu-latest
-    steps:
-      - name: handle error
+      - name: on_failure_step
+        if: needs.run_parent.result == 'failure'
         run: echo "handle error"
-    
