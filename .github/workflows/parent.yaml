@@ -1,0 +1,14 @@
+name: Parent
+
+on:
+  push:
+    branches: main
+  workflow_dispatch: {}
+
+permissions: read-all
+
+jobs:
+  run_parent:
+    uses: ./.github/workflows/child.yaml
+    secrets: inherit
+    if: success() || failure()
