@@ -7,7 +7,7 @@ on:
 permissions: read-all
 
 jobs:
-  run_tests:
+  run_child:
     runs-on: ubuntu-latest
     steps:
       - name: Run child
