@@ -3,6 +3,13 @@ description: File a bug/issue
 title: "[BUG] <title>"
 labels: ["Bug", "Needs Triage"]
 body:
+- type: dropdown
+  attributes:
+    label: What types of pie do you like?
+    options:
+      - Apple
+      - Pumpkin
+      - Peach
 - type: checkboxes
   attributes:
     label: Is there an existing issue for this?
