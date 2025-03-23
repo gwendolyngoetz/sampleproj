@@ -1,0 +1,120 @@
+name: Matrix Upload With Single Artifact
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  # First job: Generate JSON files in parallel using a matrix
+  generate-files:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file-id: [1, 2, 3]
+    steps:
+      - name: Create JSON file ${{ matrix.file-id }}
+        run: |
+          mkdir -p output
+          case ${{ matrix.file-id }} in
+            1)
+              cat > output/test-metrics-${{ matrix.file-id }}.json << EOF
+              {
+                "northstar_meta_tags.test.ts": 2118,
+                "northstar_security.test.ts": 3971,
+                "northstar_trusted_intermediary.test.ts": 25159,
+                "pagination.test.ts": 85710
+              }
+          EOF
+              ;;
+            2)
+              cat > output/test-metrics-${{ matrix.file-id }}.json << EOF
+              {
+                "api_endpoints.test.ts": 3542,
+                "authentication.test.ts": 6723,
+                "data_validation.test.ts": 19845,
+                "error_handling.test.ts": 42613
+              }
+          EOF
+              ;;
+            3)
+              cat > output/test-metrics-${{ matrix.file-id }}.json << EOF
+              {
+                "performance.test.ts": 5621,
+                "load_testing.test.ts": 12984,
+                "stress_testing.test.ts": 31752,
+                "resilience.test.ts": 67429
+              }
+          EOF
+              ;;
+          esac
+
+      - name: Upload individual JSON file as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-metrics-${{ matrix.file-id }}
+          path: output/test-metrics-${{ matrix.file-id }}.json
+          retention-days: 1 # Short retention since this is just an intermediate artifact
+
+  # Second job: Collect all JSON files into a single artifact with proper directory structure
+  collect-artifacts:
+    needs: generate-files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create directory structure for files
+        run: mkdir -p combined-output/report-heuristics
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: individual-artifacts
+
+      - name: Install jq for JSON processing
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Combine artifacts into a single JSON file
+        run: |
+          echo "Available artifacts:"
+          ls -la individual-artifacts/
+
+          # Create report-heuristics directory
+          mkdir -p combined-output/report-heuristics
+
+          # Create a temporary directory for processing
+          mkdir -p temp-json-files
+
+          # Collect all JSON files into the temporary directory
+          for artifact_dir in individual-artifacts/test-metrics-*; do
+            if [ -d "$artifact_dir" ]; then
+              echo "Processing directory: $artifact_dir"
+              find "$artifact_dir" -name "*.json" -exec cp {} temp-json-files/ \;
+            fi
+          done
+
+          echo "JSON files collected for merging:"
+          ls -la temp-json-files/
+
+          # Merge all JSON files into a single object using jq
+          echo "Merging JSON files into a single combined file..."
+          jq -s 'reduce .[] as $item ({}; . + $item)' temp-json-files/*.json > combined-output/report-heuristics/combined-metrics.json
+
+          echo "Contents of the combined JSON file:"
+          cat combined-output/report-heuristics/combined-metrics.json
+
+          # Remove temporary directory
+          rm -rf temp-json-files
+
+          # Show the final structure
+          echo "Final artifact structure:"
+          find combined-output -type f | sort
+
+      - name: Upload combined artifact with report-heuristics directory
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-metrics-report
+          path: combined-output/
+          retention-days: 7 # Keep the final artifact longer
