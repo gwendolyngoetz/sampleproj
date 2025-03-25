@@ -1,9 +1,10 @@
 ---
-name: Bug report
+name: TestBug report
 about: Create a report to help us improve
 title: ''
-labels: [type: bug, bug, needs-triage]
+labels: bug, needs-triage
 assignees: ''
+type: bug
 ---
 
 **Describe the bug**
