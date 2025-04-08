@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="newtonsoft.json" Version="13.0.3" />
-    <PackageReference Include="shouldly" Version="4.2.1" />
+    <PackageReference Include="shouldly" Version="4.3.0" />
     <PackageReference Include="xunit" Version="2.6.5" />
   </ItemGroup>
 
