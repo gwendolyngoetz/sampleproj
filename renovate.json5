@@ -119,7 +119,6 @@
     },
     // Docker Images: Pin to SHA256 digests for security and consistency
     {
-      "groupName": "Docker Images",
       "matchManagers": ["docker-compose", "dockerfile"],
       "pinDigests": true,
       "commitMessagePrefix": "[Update Docker Images]: ",
