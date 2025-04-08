@@ -108,6 +108,7 @@
     },
     // GitHub Actions: Pin to commit hashes and include a comment with the version
     {
+      "groupName": null,
       "matchManagers": ["github-actions"],
       "pinDigests": true,
       "commitMessagePrefix": "[Update Github Action]: ",
@@ -118,6 +119,7 @@
     },
     // Docker Images: Pin to SHA256 digests for security and consistency
     {
+      "groupName": null,
       "matchManagers": ["docker-compose", "dockerfile"],
       "pinDigests": true,
       "commitMessagePrefix": "[Update Docker Image]: ",
