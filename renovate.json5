@@ -110,7 +110,7 @@
     {
       "matchManagers": ["github-actions"],
       "pinDigests": true,
-      "commitMessagePrefix": "[Update Github Actions]: ",
+      "commitMessagePrefix": "[Update Github Action]: ",
       "commitMessageExtra": "Updated to latest release",
       "postUpdateOptions": ["comment"],
       "rebaseWhen": "always",
@@ -120,7 +120,7 @@
     {
       "matchManagers": ["docker-compose", "dockerfile"],
       "pinDigests": true,
-      "commitMessagePrefix": "[Update Docker Images]: ",
+      "commitMessagePrefix": "[Update Docker Image]: ",
       "commitMessageExtra": "Pinned to latest digest",
       "postUpdateOptions": ["comment"],
       "rebaseWhen": "always",
