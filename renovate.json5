@@ -111,7 +111,7 @@
       "groupName": null,
       "matchManagers": ["github-actions"],
       "pinDigests": true,
-      "commitMessageExtra": "Updated to latest release",
+      "commitMessageExtra": "to latest commit",
       "rebaseWhen": "always",
       "description": "Ensures GitHub Actions use commit hashes for security and include a version comment."
     },
@@ -120,7 +120,7 @@
       "groupName": null,
       "matchManagers": ["docker-compose", "dockerfile"],
       "pinDigests": true,
-      "commitMessageExtra": "Updated to latest release",
+      "commitMessageExtra": "to latest commit",
       "rebaseWhen": "always",
       "description": "Ensures Docker images use SHA256 digests for security and reproducibility."
     }
