@@ -108,7 +108,6 @@
     },
     // GitHub Actions: Pin to commit hashes and include a comment with the version
     {
-      "groupName": "GitHub Actions",
       "matchManagers": ["github-actions"],
       "pinDigests": true,
       "commitMessagePrefix": "[Update Github Actions]: ",
