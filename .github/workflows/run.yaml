@@ -52,7 +52,7 @@ jobs:
           esac
 
       - name: Upload individual JSON file as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: test-metrics-${{ matrix.file-id }}
           path: output/test-metrics-${{ matrix.file-id }}.json
@@ -67,7 +67,7 @@ jobs:
         run: mkdir -p combined-output/report-heuristics
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4
         with:
           path: individual-artifacts
 
@@ -113,7 +113,7 @@ jobs:
           find combined-output -type f | sort
 
       - name: Upload combined artifact with report-heuristics directory
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: test-metrics-report
           path: combined-output/
