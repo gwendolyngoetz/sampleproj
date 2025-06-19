@@ -9,7 +9,7 @@
       "prFooter": "https://github.com/swagger-api/swagger-core/releases"
     },
     {
-      "matchPackageNames": ["docker/login-action"],
+      "matchPackageNames": ["grafana/grafana"],
       "prFooter": "go away"
     }
   ]
