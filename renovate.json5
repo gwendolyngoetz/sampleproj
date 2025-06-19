@@ -3,12 +3,11 @@
   packageRules: [
     {
       matchPackageNames: ["io.swagger.core.v3:swagger-core"],
-      prHeader: "https://github.com/swagger-api/swagger-core/releases",
-      prFooter: "https://github.com/swagger-api/swagger-core/releases"
+      prHeader: "Release Notes: https://github.com/swagger-api/swagger-core/releases",
     },
     {
       matchPackageNames: ["grafana/grafana"],
-      prFooter: "go away"
+      prHeader: "Release Notes Link:"
     }
   ]
 }
