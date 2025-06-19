@@ -1,17 +1,14 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "packageRules": [
+  extends: ["config:recommended"],
+  packageRules: [
     {
-      "matchPackageNames": ["io.swagger.core.v3:swagger-core"],
-      "prHeader": "https://github.com/swagger-api/swagger-core/releases",
-      "prFooter": "https://github.com/swagger-api/swagger-core/releases"
+      matchPackageNames: ["io.swagger.core.v3:swagger-core"],
+      prHeader: "https://github.com/swagger-api/swagger-core/releases",
+      prFooter: "https://github.com/swagger-api/swagger-core/releases"
     },
     {
-      "matchPackageNames": ["grafana/grafana"],
-      "prFooter": "go away"
+      matchPackageNames: ["grafana/grafana"],
+      prFooter: "go away"
     }
   ]
 }
