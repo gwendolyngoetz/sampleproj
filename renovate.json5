@@ -3,5 +3,14 @@
   "extends": [
     "config:recommended"
   ],
-  "prFooter": "source URL: {{sourceUrl}}"
+  "packageRules": [
+    {
+      "matchPackageNames": ["io.swagger.core.v3:swagger-core"],
+      "prFooter": "https://github.com/swagger-api/swagger-core/releases"
+    },
+    {
+      "matchPackageNames": ["docker/login-action"],
+      "prFooter": "go away"
+    }
+  ]
 }
