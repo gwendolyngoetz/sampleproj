@@ -6,6 +6,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["io.swagger.core.v3:swagger-core"],
+      "prHeader": "https://github.com/swagger-api/swagger-core/releases",
       "prFooter": "https://github.com/swagger-api/swagger-core/releases"
     },
     {
