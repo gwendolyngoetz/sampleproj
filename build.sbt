@@ -15,6 +15,6 @@ lazy val root = (project in file("."))
     scalaVersion := crossScalaVersions.value.head,
     maintainer := "zzz",
     libraryDependencies ++= Seq(
-      "io.swagger.core.v3" % "swagger-core" % "2.2.32"
+      "io.swagger.core.v3" % "swagger-core" % "2.2.34"
     )
   )
