@@ -1,5 +1,6 @@
 {
-  extends: ["config:recommended"],
+  extends: ["config:recommended", "helpers:pinGitHubActionDigestsToSemver"],
+
   packageRules: [
     {
       groupName: null,
