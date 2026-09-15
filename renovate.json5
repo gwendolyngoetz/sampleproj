@@ -1,5 +1,5 @@
 {
-  extends: ["config:recommended", "helpers:pinGitHubActionDigestsToSemver"],
+  extends: ["config:recommended"],
 
   packageRules: [
     {
